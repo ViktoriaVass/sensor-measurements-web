@@ -9,19 +9,24 @@ import { ISensor } from './interfaces/Sensor';
   providedIn: 'root',
 })
 export class BackendService {
-  private apiUrl = 'http://localhost:8090/sensor'; 
+  private apiUrlSensor = 'http://localhost:8090/sensor'; 
 
   constructor(public storeService: StoreService, private http: HttpClient) {}
 
   public getSensors(): Observable<ISensor[]> {
-    const fullUrl = this.apiUrl;
-    console.log('Full URL:', fullUrl);
     
-    return this.http.get<ISensor[]>(this.apiUrl).pipe(
+    return this.http.get<ISensor[]>(this.apiUrlSensor).pipe(
       map((jsonResponse: ISensor[]) => {
         console.log('Received JSON Response:', jsonResponse);
         return jsonResponse;
       })
     );
   }
+
+  public deleteSensor(sensor_id: bigint): Observable<any> {
+    console.log("delete Sensor openet with ID: " + sensor_id);
+    return this.http.delete(this.apiUrlSensor + `/${sensor_id}`);
+  }
+  
+  
 }
