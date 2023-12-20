@@ -1,6 +1,6 @@
-import { Sensor } from "./Sensor";
+import { ISensor } from "./Sensor";
 
-export interface Measurement {
+export interface IMeasurement {
     measurement_id: bigint;
     humidity: bigint;
     temperature: bigint,
@@ -8,7 +8,7 @@ export interface Measurement {
     sensor_id: bigint;
 }
 
-export interface MeasurementResponse {
+export interface IMeasurementResponse {
     timestamp: Date;
     temprature: bigint;
     humidity: bigint;

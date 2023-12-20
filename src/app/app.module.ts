@@ -11,6 +11,10 @@ import { SensorAddDataComponent } from './sensor-dashboard/sensor-add-data/senso
 import { MeasurementDiagramComponent } from './measurement-dashboard/measurement-diagram/measurement-diagram.component';
 import { MeasurementDataComponent } from './measurement-dashboard/measurement-data/measurement-data.component';
 import { MeasurementAddDataComponent } from './measurement-dashboard/measurement-add-data/measurement-add-data.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import { MeasurementAddDataComponent } from './measurement-dashboard/measurement
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTableModule,
+    MatSortModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

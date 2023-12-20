@@ -1,14 +1,14 @@
-export interface Sensor {
-    sensor_id: bigint;
-    is_active: boolean;
-    location: string,
+export interface ISensor {
+    //sensorId: string;
     name: string;
+    location: string,
+    isActive: boolean;
     type: string;
 }
 
-export interface SensorResponse {
+export interface ISensorResponse {
     name: string;
     location: string,
-    is_active: boolean;
+    isActive: boolean;
     type: string;
 }

@@ -1,15 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Sensor} from "./interfaces/Sensor";
+import {ISensor} from "./interfaces/Sensor";
 import {StoreService} from "./store.service";
+import { Observable, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BackendService {
 
-    constructor(private http: HttpClient, private storeService: StoreService) { }
+    constructor(public storeService: StoreService) { }
 
+    public getSensors(): Observable<ISensor[]> {
+      return of([
+        {
+            "name": "Kitchen",
+            "location": "kitchen",
+            "isActive": true,
+            "type": "indoor"
+        },
+      ]);
+    }
+  }
+    /*
     public getSensors() {
         this.http.get<Sensor[]>('http://localhost:8083/sensor').subscribe(data => {
             this.storeService.sensors = data;
@@ -37,4 +50,3 @@ export class BackendService {
         })
     }
      */
-}
