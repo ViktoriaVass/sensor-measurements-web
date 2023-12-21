@@ -39,7 +39,7 @@ export class MeasurementDataComponent {
 
   public deleteMeasurement(measurement_id: bigint) {
     console.log("Measurement to delete ID: " + measurement_id);
-    this.backendService.deleteSensor(measurement_id).subscribe(
+    this.backendService.deleteMeasurement(measurement_id).subscribe(
         () => {
           this.measurements = this.measurements.filter(measurement => measurement.measurement_id !== measurement_id);
           console.log('Measurement deleted successfully');
