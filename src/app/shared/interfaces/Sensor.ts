@@ -1,4 +1,4 @@
-export interface ISensor { //Kindergarten
+export interface ISensor {
     sensor_id: bigint;
     name: string;
     location: string,
