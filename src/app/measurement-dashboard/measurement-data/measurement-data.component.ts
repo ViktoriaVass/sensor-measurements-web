@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {BackendService} from "../../shared/backend.service";
 import {StoreService} from "../../shared/store.service";
-import {IMeasurementResponse} from "../../shared/interfaces/Measurement";
+import {IMeasurement} from "../../shared/interfaces/Measurement";
+import {ISensor} from "../../shared/interfaces/Sensor";
 
 @Component({
   selector: 'app-measurement-data',
@@ -10,8 +11,8 @@ import {IMeasurementResponse} from "../../shared/interfaces/Measurement";
 })
 export class MeasurementDataComponent {
 
-  constructor (public backendService: BackendService, public storeService: StoreService) {  }
-  measurements: IMeasurementResponse[] = [];
+  constructor (public backendService: BackendService) {  }
+  measurements: IMeasurement[] = [];
 
   ngOnInit(): void {
     this.backendService.getMeasurements().subscribe(
@@ -33,7 +34,7 @@ export class MeasurementDataComponent {
     { field: 'humidity', header: 'Humidity' },
     { field: 'temperature', header: 'Temperature' },
     { field: 'timestamp', header: 'Timestamp' },
-    { field: 'sensor_id', header: 'Sensor' },
+    { field: 'this.sensor.name', header: 'Sensor' },
     { field: 'delete', header: '' },
   ];
 

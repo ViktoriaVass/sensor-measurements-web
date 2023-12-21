@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StoreService } from './store.service';
 import {ISensor} from './interfaces/Sensor';
-import {IMeasurementResponse} from "./interfaces/Measurement";
+import {IMeasurement} from "./interfaces/Measurement";
 
 @Injectable({
   providedIn: 'root',
@@ -28,9 +28,9 @@ export class BackendService {
   }
 
 
-  public getMeasurements(): Observable<IMeasurementResponse[]> {
-    return this.http.get<IMeasurementResponse[]>("http://localhost:8083/measurement").pipe(
-        map((jsonResponse: IMeasurementResponse[]) => {
+  public getMeasurements(): Observable<IMeasurement[]> {
+    return this.http.get<IMeasurement[]>("http://localhost:8083/measurement").pipe(
+        map((jsonResponse: IMeasurement[]) => {
           console.log('Received JSON Response:', jsonResponse);
           return jsonResponse;
         })
