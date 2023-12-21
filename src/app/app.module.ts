@@ -15,6 +15,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSortModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
