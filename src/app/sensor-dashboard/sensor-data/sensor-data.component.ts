@@ -35,7 +35,7 @@ export class SensorDataComponent implements OnInit {
     { field: 'location', header: 'Location' },
     { field: 'isActive', header: 'Active' },
     { field: 'type', header: 'Type' },
-    { field: 'delete', header: 'Löschen' },
+    { field: 'delete', header: '' },
   ];
 
   public deleteSensor(sensor_id: bigint) {
@@ -50,6 +50,4 @@ export class SensorDataComponent implements OnInit {
       }
     );
   }
-  
-  
 }
