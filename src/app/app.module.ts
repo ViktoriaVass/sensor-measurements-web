@@ -16,7 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from "@angular/material/toolbar";
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
