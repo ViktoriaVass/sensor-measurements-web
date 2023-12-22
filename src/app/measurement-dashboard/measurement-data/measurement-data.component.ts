@@ -33,7 +33,7 @@ export class MeasurementDataComponent {
     { field: 'measurement_id', header: 'ID' },
     { field: 'humidity', header: 'Humidity' },
     { field: 'temperature', header: 'Temperature' },
-    { field: 'timestamp', header: 'Timestamp' },
+    { field: 'timestamp', header: 'Timestamp (UTC)' },
     { field: 'this.sensor.name', header: 'Sensor' },
     { field: 'delete', header: '' },
   ];
