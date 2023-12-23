@@ -1,1 +1,55 @@
-<p>sensor-add-data works!</p>
+<form [formGroup]="addSensorForm" (ngSubmit)="onSubmit()">
+    <h2>Sensor hinzufügen</h2>
+
+    <mat-form-field class="input-width">
+        <mat-label>Name</mat-label>
+        <mat-hint>Sensorname</mat-hint>
+        <input matInput placeholder="Sensorname" formControlName="name">
+        <mat-error *ngIf="addSensorForm.get('name').hasError('required')">
+            Bitte Sensorname angeben
+        </mat-error>
+        <mat-error *ngIf="addSensorForm.get('name').hasError('minlength')">
+            Name muss mindestens 3 Zeichen lang sein
+        </mat-error>
+    </mat-form-field><br />
+
+    <mat-form-field class="input-width">
+        <mat-label>Standort</mat-label>
+        <mat-hint>Standort</mat-hint>
+        <input matInput placeholder="Standort" formControlName="location">
+        <mat-error *ngIf="addSensorForm.get('location').hasError('required')">
+            Bitte Standort angeben
+        </mat-error>
+    </mat-form-field><br />
+
+    <div class="input-width">
+        <mat-checkbox formControlName="isActive">Aktiv</mat-checkbox>
+        <mat-error *ngIf="addSensorForm.get('isActive').hasError('required')">
+            Aktivitätsstatus auswählen
+        </mat-error>
+    </div><br />
+    
+        <mat-form-field class="input-width">
+            <mat-label>Typ</mat-label>
+            <mat-select formControlName="type">
+                <mat-option value="" disabled>Bitte auswählen</mat-option>
+                <mat-option value="indoor">Indoor</mat-option>
+                <mat-option value="outdoor">Outdoor</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addSensorForm.get('type').hasError('required')">
+                Bitte Sensor-Typ wählen
+            </mat-error>
+        </mat-form-field><br />
+    
+
+    <div *ngIf="checkValidSensorInput()">
+        <button mat-flat-button color="primary" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="input-width">
+            Erfassen
+        </button>
+    </div>
+    <div *ngIf="!checkValidSensorInput()">
+        <button mat-stroked-button color="link" type="submit" class="input-width">
+            Erfassen
+        </button>
+    </div>
+</form>

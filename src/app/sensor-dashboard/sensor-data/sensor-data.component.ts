@@ -40,14 +40,14 @@ export class SensorDataComponent implements OnInit {
 
   public deleteSensor(sensor_id: bigint) {
     console.log("Sensor to delete ID: " + sensor_id);
-    this.backendService.deleteSensor(sensor_id).subscribe(
-      () => {
+    this.backendService.deleteSensor(sensor_id).subscribe({
+      next: () => {
         this.sensors = this.sensors.filter(sensor => sensor.sensor_id !== sensor_id);
         console.log('Sensor deleted successfully');
       },
-      error => {
+      error: error => {
         console.error('Error deleting sensor:', error);
       }
-    );
-  }
+    });
+  }  
 }

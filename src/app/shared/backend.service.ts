@@ -27,6 +27,11 @@ export class BackendService {
     return this.http.delete("http://localhost:8090/sensor" + `/${sensor_id}`);
   }
 
+  public addSensor(sensor: ISensor): Observable<any> {
+    console.log("adding Sensor: ", sensor);
+    return this.http.post("http://localhost:8090/sensor", sensor);
+  }
+  
 
   public getMeasurements(): Observable<IMeasurement[]> {
     return this.http.get<IMeasurement[]>("http://localhost:8083/measurement").pipe(
