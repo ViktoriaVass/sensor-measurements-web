@@ -1,52 +1,44 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {ISensor} from "./interfaces/Sensor";
-import {StoreService} from "./store.service";
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { StoreService } from './store.service';
+import {ISensor} from './interfaces/Sensor';
+import {IMeasurement} from "./interfaces/Measurement";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class BackendService {
 
-    constructor(public storeService: StoreService) { }
+  constructor(public storeService: StoreService, private http: HttpClient) {}
 
-    public getSensors(): Observable<ISensor[]> {
-      return of([
-        {
-            "name": "Kitchen",
-            "location": "kitchen",
-            "isActive": true,
-            "type": "indoor"
-        },
-      ]);
-    }
+  public getSensors(): Observable<ISensor[]> {
+    return this.http.get<ISensor[]>("http://localhost:8083/sensor").pipe(
+      map((jsonResponse: ISensor[]) => {
+        console.log('Received JSON Response:', jsonResponse);
+        return jsonResponse;
+      })
+    );
   }
-    /*
-    public getSensors() {
-        this.http.get<Sensor[]>('http://localhost:8083/sensor').subscribe(data => {
-            this.storeService.sensors = data;
-        });
-    }
 
-    /*
-    public getChildren(page: number) {
-        this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}`, { observe: 'response' }).subscribe(data => {
-            this.storeService.children = data.body!;
-            this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
-            this.storeService.isLoading = false;
-        });
-    }
+  public deleteSensor(sensor_id: bigint): Observable<any> {
+    console.log("delete Sensor opened with ID: " + sensor_id);
+    return this.http.delete("http://localhost:8090/sensor" + `/${sensor_id}`);
+  }
 
-    public addChildData(child: Child, page:  number) {
-        this.http.post('http://localhost:5000/childs', child).subscribe(_ => {
-            this.getChildren(page);
+
+  public getMeasurements(): Observable<IMeasurement[]> {
+    return this.http.get<IMeasurement[]>("http://localhost:8083/measurement").pipe(
+        map((jsonResponse: IMeasurement[]) => {
+          console.log('Received JSON Response:', jsonResponse);
+          return jsonResponse;
         })
-    }
+    );
+  }
 
-    public deleteChildData(childId: string, page: number) {
-        this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_=> {
-            this.getChildren(page);
-        })
+    public deleteMeasurement(measurement_id: bigint): Observable<any> {
+        console.log("delete Sensor opened with ID: " + measurement_id);
+        return this.http.delete("http://localhost:8090/measurement" + `/${measurement_id}`);
     }
-     */
+}

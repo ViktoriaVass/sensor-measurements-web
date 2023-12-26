@@ -30,10 +30,24 @@ export class SensorDataComponent implements OnInit {
   }
 
   columns = [
+    { field: 'sensor_id', header: 'ID' },
     { field: 'name', header: 'Name' },
     { field: 'location', header: 'Location' },
     { field: 'isActive', header: 'Active' },
     { field: 'type', header: 'Type' },
+    { field: 'delete', header: '' },
   ];
 
+  public deleteSensor(sensor_id: bigint) {
+    console.log("Sensor to delete ID: " + sensor_id);
+    this.backendService.deleteSensor(sensor_id).subscribe(
+      () => {
+        this.sensors = this.sensors.filter(sensor => sensor.sensor_id !== sensor_id);
+        console.log('Sensor deleted successfully');
+      },
+      error => {
+        console.error('Error deleting sensor:', error);
+      }
+    );
+  }
 }

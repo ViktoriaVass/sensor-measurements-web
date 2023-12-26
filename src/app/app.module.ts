@@ -14,7 +14,9 @@ import { MeasurementAddDataComponent } from './measurement-dashboard/measurement
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatSortModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    MatToolbarModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

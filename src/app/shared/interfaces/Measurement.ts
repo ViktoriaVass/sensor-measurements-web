@@ -5,11 +5,5 @@ export interface IMeasurement {
     humidity: bigint;
     temperature: bigint,
     timestamp: Date;
-    sensor_id: bigint;
-}
-
-export interface IMeasurementResponse {
-    timestamp: Date;
-    temprature: bigint;
-    humidity: bigint;
+    sensor_id: ISensor;
 }
