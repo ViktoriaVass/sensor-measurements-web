@@ -45,6 +45,10 @@ export class MeasurementAddDataComponent implements OnInit {
             const observer: PartialObserver<any> = {
                 next: response => {
                     console.log('Add measurement Response:', response);
+                    this.backendService.getMeasurements().subscribe(data => {
+                        this.storeService.measurements = data;
+                    })
+                    this.addMeasurementForm.reset();
                 },
                 error: error => {
                     console.error('Error adding measurement:', error);
@@ -52,8 +56,6 @@ export class MeasurementAddDataComponent implements OnInit {
             };
 
             this.backendService.addMeasurement({...this.addMeasurementForm.value}).subscribe(observer);
-            this.backendService.getMeasurements();
-            this.addMeasurementForm.reset;
 
         } else {
             console.log('Form validation failed. Please check the form for errors.');
