@@ -23,8 +23,8 @@ export class MeasurementAddDataComponent implements OnInit {
         this.addMeasurementForm = this.formbuilder.group({
             measurement_id: [0],  // ID will be automatically assigned in the backend
             timestamp: [this.getCurrentUTC()],
-            humidity: ['', [Validators.required, Validators.pattern('^(100|\d{1,2})$')]],
-            temperature: ['', [Validators.required, Validators.pattern('^(-?\d{1,2}(\.\d+)?|-\d{1,2}(\.\d+)?|50(\.0+)?)$')]],
+            humidity: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+            temperature: ['', [Validators.required, Validators.min(-30), Validators.max(50)]],
             sensor: ['', [Validators.required]]
         })
 

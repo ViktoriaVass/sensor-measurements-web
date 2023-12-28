@@ -22,8 +22,11 @@
         <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('required')">
             Bitte den Wert der Feuchtigkeit eingeben!
         </mat-error>
-        <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('pattern')">
-            Der Wert darf unter 0 und über 100 sein!
+        <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('min')">
+            Der Wert darf nicht unter 0 sein!
+        </mat-error>
+        <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('max')">
+            Der Wert darf nicht über 100 sein!
         </mat-error>
     </mat-form-field>
     <br/>
@@ -35,8 +38,11 @@
         <mat-error *ngIf="addMeasurementForm.get('temperature').hasError('required')">
             Bitte den Wert der Temperatur eingeben!
         </mat-error>
-        <mat-error *ngIf="addMeasurementForm.get('temperature').hasError('pattern')">
-            Der Wert darf nicht unter -30 und über 50 sein!
+        <mat-error *ngIf="addMeasurementForm.get('temperature').hasError('min')">
+            Der Wert darf nicht unter -30 sein!
+        </mat-error>
+        <mat-error *ngIf="addMeasurementForm.get('temperature').hasError('max')">
+            Der Wert darf nicht über 50 sein!
         </mat-error>
     </mat-form-field>
     <br/>
