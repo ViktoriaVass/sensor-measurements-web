@@ -46,4 +46,9 @@ export class BackendService {
         console.log("delete Sensor opened with ID: " + measurement_id);
         return this.http.delete("http://localhost:8090/measurement" + `/${measurement_id}`);
     }
+
+    public addMeasurement(measurement: IMeasurement): Observable<any> {
+        console.log("adding Measurement: ", measurement);
+        return this.http.post("http://localhost:8090/measurement", measurement);
+    }
 }
