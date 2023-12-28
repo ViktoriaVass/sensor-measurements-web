@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {BackendService} from "../../shared/backend.service";
 import {StoreService} from "../../shared/store.service";
-import {IMeasurement} from "../../shared/interfaces/Measurement";
-import {ISensor} from "../../shared/interfaces/Sensor";
 
 @Component({
   selector: 'app-measurement-data',
@@ -11,13 +9,12 @@ import {ISensor} from "../../shared/interfaces/Sensor";
 })
 export class MeasurementDataComponent {
 
-  constructor (public backendService: BackendService) {  }
-  measurements: IMeasurement[] = [];
+  constructor (public backendService: BackendService, public storeService: StoreService) {  }
 
   ngOnInit(): void {
     this.backendService.getMeasurements().subscribe(
         measurements => {
-          this.measurements = measurements; // Assign the measurement to the property
+          this.storeService.measurements = measurements; // Assign the measurement to the property
         },
         error => {
           console.error('Error fetching measurements:', error);
@@ -42,7 +39,7 @@ export class MeasurementDataComponent {
     console.log("Measurement to delete ID: " + measurement_id);
     this.backendService.deleteMeasurement(measurement_id).subscribe(
         () => {
-          this.measurements = this.measurements.filter(measurement => measurement.measurement_id !== measurement_id);
+          this.storeService.measurements = this.storeService.measurements.filter(measurement => measurement.measurement_id !== measurement_id);
           console.log('Measurement deleted successfully');
         },
         error => {

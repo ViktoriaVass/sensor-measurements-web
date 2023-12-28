@@ -1,4 +1,4 @@
-<mat-table [dataSource]="measurements" matSort>
+<mat-table [dataSource]="storeService.measurements" matSort>
 
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>

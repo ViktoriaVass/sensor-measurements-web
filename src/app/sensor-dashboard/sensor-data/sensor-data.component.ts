@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/shared/backend.service';
-import { ISensor } from 'src/app/shared/interfaces/Sensor';
 import { StoreService } from 'src/app/shared/store.service';
 
 
@@ -12,12 +11,11 @@ import { StoreService } from 'src/app/shared/store.service';
 export class SensorDataComponent implements OnInit {
 
   constructor (public backendService: BackendService, public storeService: StoreService) {  }
-  sensors: ISensor[] = [];
   
   ngOnInit(): void {
     this.backendService.getSensors().subscribe(
       sensors => {
-        this.sensors = sensors; // Assign the sensors to the property
+        this.storeService.sensors = sensors; // Assign the sensors to the property
       },
       error => {
         console.error('Error fetching sensors:', error);
@@ -42,7 +40,7 @@ export class SensorDataComponent implements OnInit {
     console.log("Sensor to delete ID: " + sensor_id);
     this.backendService.deleteSensor(sensor_id).subscribe({
       next: () => {
-        this.sensors = this.sensors.filter(sensor => sensor.sensor_id !== sensor_id);
+        this.storeService.sensors = this.storeService.sensors.filter(sensor => sensor.sensor_id !== sensor_id);
         console.log('Sensor deleted successfully');
       },
       error: error => {
