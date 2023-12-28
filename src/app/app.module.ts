@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ButtonComponent } from './button/button.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     SensorAddDataComponent,
     MeasurementDiagramComponent,
     MeasurementDataComponent,
-    MeasurementAddDataComponent
+    MeasurementAddDataComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

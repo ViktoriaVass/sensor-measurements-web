@@ -2,4 +2,6 @@
 <br>
 <app-measurement-data></app-measurement-data>
 <br>
-<app-measurement-add-data></app-measurement-add-data>
+<app-button [showAddData]="showAddData" (toggleButtonClickedEvent)="toggleButtonClicked($event)"></app-button>
+<br>
+<app-measurement-add-data *ngIf="showAddData" ></app-measurement-add-data>

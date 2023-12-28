@@ -1,3 +1,5 @@
 <app-sensor-data></app-sensor-data>
 <br>
-<app-sensor-add-data></app-sensor-add-data>
+<app-button [showAddData]="showAddData" (toggleButtonClickedEvent)="toggleButtonClicked($event)"></app-button>
+<br>
+<app-sensor-add-data *ngIf="showAddData" ></app-sensor-add-data>
