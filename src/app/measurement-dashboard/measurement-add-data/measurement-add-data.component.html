@@ -1,1 +1,56 @@
-<p>measurement-add-data works!</p>
+<form [formGroup]="addMeasurementForm" (ngSubmit)="onSubmit()">
+    <h2>Messung hinzufügen</h2>
+
+    <mat-form-field class="input-width">
+        <mat-label>Sensor</mat-label>
+        <mat-select formControlName="sensor">
+            <mat-option value="" disabled>Bitte Sensor auswählen</mat-option>
+            <mat-option *ngFor="let sensor of storeService.sensors" [value]="sensor.sensor_id">
+                {{ sensor.name }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addMeasurementForm.get('sensor').hasError('required')">
+            Bitte Sensor wählen
+        </mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field class="input-width">
+        <mat-label>Feuchtigkeit</mat-label>
+        <mat-hint>Wert der Luftfeuchtigkeit</mat-hint>
+        <input matInput placeholder="Feuchtigkeit" formControlName="humidity">
+        <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('required')">
+            Bitte den Wert der Feuchtigkeit eingeben!
+        </mat-error>
+        <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('pattern')">
+            Der Wert darf unter 0 und über 100 sein!
+        </mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field class="input-width">
+        <mat-label>Temperatur</mat-label>
+        <mat-hint>Wert der Temperatur</mat-hint>
+        <input matInput placeholder="Temperatur" formControlName="temperature">
+        <mat-error *ngIf="addMeasurementForm.get('temperature').hasError('required')">
+            Bitte den Wert der Temperatur eingeben!
+        </mat-error>
+        <mat-error *ngIf="addMeasurementForm.get('temperature').hasError('pattern')">
+            Der Wert darf nicht unter -30 und über 50 sein!
+        </mat-error>
+    </mat-form-field>
+    <br/>
+
+
+    <div *ngIf="checkValidMeasurementInput()">
+        <button mat-flat-button color="primary" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                class="input-width">
+            Erfassen
+        </button>
+    </div>
+    <div *ngIf="!checkValidMeasurementInput()">
+        <button mat-stroked-button color="link" type="submit" class="input-width">
+            Erfassen
+        </button>
+    </div>
+</form>
