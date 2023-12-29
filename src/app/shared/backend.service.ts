@@ -39,8 +39,7 @@ export class BackendService {
         this.http.get<IMeasurement[]>("http://localhost:8083/measurement").subscribe(data => {
             this.storeService.measurements = data;
         })
-    );
-  }
+    }
 
     public deleteMeasurement(measurement_id: bigint) {
         console.log("delete Sensor opened with ID: " + measurement_id);

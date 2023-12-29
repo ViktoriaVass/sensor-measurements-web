@@ -15,7 +15,7 @@ export class MeasurementDiagramComponent {
     temperatureData: number[] = [];
     timeData: String[] = [];
     public lineChartLegend = true;
-  
+
     constructor(public backendService: BackendService, public storeService: StoreService) {
     }
 

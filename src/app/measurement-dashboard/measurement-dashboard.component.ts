@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class MeasurementDashboardComponent {
 
-  public showAddData = true;
+  public showAddData = false;
   toggleButtonClicked(showAddData: boolean) {
     this.showAddData=showAddData;
   }
