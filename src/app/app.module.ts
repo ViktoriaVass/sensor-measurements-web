@@ -17,6 +17,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { NgChartsModule } from 'ng2-charts';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +37,8 @@ import { NgChartsModule } from 'ng2-charts';
     SensorAddDataComponent,
     MeasurementDiagramComponent,
     MeasurementDataComponent,
-    MeasurementAddDataComponent
+    MeasurementAddDataComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +48,17 @@ import { NgChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
-    NgChartsModule
+    NgChartsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatMenuModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
