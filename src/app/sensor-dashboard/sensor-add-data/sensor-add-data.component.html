@@ -1,5 +1,5 @@
 <form [formGroup]="addSensorForm" (ngSubmit)="onSubmit()">
-    <h2>Sensor hinzufügen</h2>
+    <h1>Sensor hinzufügen</h1>
 
     <mat-form-field class="input-width">
         <mat-label>Name</mat-label>
@@ -28,7 +28,7 @@
             Aktivitätsstatus auswählen
         </mat-error>
     </div><br />
-    
+
         <mat-form-field class="input-width">
             <mat-label>Typ</mat-label>
             <mat-select formControlName="type">
@@ -40,7 +40,6 @@
                 Bitte Sensor-Typ wählen
             </mat-error>
         </mat-form-field><br />
-    
 
     <div *ngIf="checkValidSensorInput()">
         <button mat-flat-button color="primary" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="input-width">

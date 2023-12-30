@@ -27,7 +27,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ButtonComponent } from './button/button.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

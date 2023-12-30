@@ -1,0 +1,45 @@
+div{
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+mat-cell{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-header-cell{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+}
+
+mat-header-row{
+  background-color: #C17EF1;
+  text-align: center;
+}
+
+mat-row{
+  background-color: #EDDAFB;
+  text-align: center;
+}
+
+mat-row:hover{
+  background-color: #F6EDFD;
+}
+
+button{
+  background-color: #C17EF1;
+  color: white;
+  border-radius: 12px;
+  padding: 5px 12px;
+}
+
+button:hover{
+  background-color: #EDDAFB;
+  color: black;
+}
