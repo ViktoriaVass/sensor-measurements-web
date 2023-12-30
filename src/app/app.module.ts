@@ -58,6 +58,7 @@ import { ButtonComponent } from './button/button.component';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

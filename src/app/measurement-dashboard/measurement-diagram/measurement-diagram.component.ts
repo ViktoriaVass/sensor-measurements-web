@@ -3,6 +3,7 @@ import {ChartConfiguration, ChartOptions, ChartType} from 'chart.js/auto';
 import {BackendService} from "../../shared/backend.service";
 import {IMeasurement} from "../../shared/interfaces/Measurement";
 import * as moment from 'moment';
+import {StoreService} from "../../shared/store.service";
 
 @Component({
     selector: 'app-measurement-diagram',
@@ -10,32 +11,27 @@ import * as moment from 'moment';
     styleUrls: ['./measurement-diagram.component.scss']
 })
 export class MeasurementDiagramComponent {
-    measurements: IMeasurement[] = [];
     humidityData: number[] = [];
     temperatureData: number[] = [];
     timeData: String[] = [];
     public lineChartLegend = true;
 
-    constructor(public backendService: BackendService) {
+    constructor(public backendService: BackendService, public storeService: StoreService) {
     }
 
     ngOnInit() {
-        this.backendService.getMeasurements().subscribe(
-            measurements => {
-                this.measurements = measurements;
-                this.processMeasurementsForChart();
-                this.updateChartData(); // Aktualisiere die Diagrammdaten
-            },
-            error => {
-                console.error('Error fetching measurements:', error);
-            }
-        );
+        this.backendService.getMeasurements()
+        setTimeout(() => {
+            this.processMeasurementsForChart();
+            this.updateChartData(); // Aktualisiere die Diagrammdaten
+        }, 5000);
     }
 
     processMeasurementsForChart(): void {
-        this.humidityData = this.measurements.map(measurement => Number(measurement.humidity));
-        this.temperatureData = this.measurements.map(measurement => Number(measurement.temperature));
-        this.timeData = this.measurements.map(measurement =>
+        this.humidityData = this.storeService.measurements.map(measurement => Number(measurement.humidity));
+        this.temperatureData = this.storeService.measurements.map(measurement => Number(measurement.temperature));
+        this.timeData = this.storeService.measurements.map(measurement =>
+
             new Date(measurement.timestamp).toLocaleDateString('at-DE', {
                 year: 'numeric',
                 month: 'short',

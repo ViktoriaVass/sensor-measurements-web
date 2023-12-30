@@ -33,22 +33,8 @@ export class SensorAddDataComponent implements OnInit {
     onSubmit() {
         if (this.addSensorForm.valid) {
             console.log("Sensor values: ", this.addSensorForm.value);
-
-            const observer: PartialObserver<any> = {
-                next: response => {
-                    console.log('Add Sensor Response:', response);
-
-                    this.backendService.getSensors().subscribe(data => {
-                        this.storeService.sensors = data;
-                    })
-                    this.addSensorForm.reset();
-                },
-                error: error => {
-                    console.error('Error adding sensor:', error);
-                }
-            };
-
-            this.backendService.addSensor({...this.addSensorForm.value}).subscribe(observer);
+            this.backendService.addSensor({...this.addSensorForm.value});
+            this.addSensorForm.reset();
 
         } else {
             console.log('Form validation failed. Please check the form for errors.');
