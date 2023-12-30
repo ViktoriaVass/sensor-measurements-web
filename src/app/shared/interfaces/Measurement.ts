@@ -1,9 +1,9 @@
 import { ISensor } from "./Sensor";
 
 export interface IMeasurement {
-    measurement_id: bigint;
-    humidity: bigint;
-    temperature: bigint,
-    timestamp: Date;
-    sensor_id: ISensor;
+  measurement_id: number;
+  sensorEntity: ISensor;
+  timestamp: string;
+  temperature: number;
+  humidity: number;
 }

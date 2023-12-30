@@ -35,7 +35,7 @@ export class MeasurementDataComponent {
     { field: 'delete', header: '' },
   ];
 
-  public deleteMeasurement(measurement_id: bigint) {
+  public deleteMeasurement(measurement_id: number) {
     console.log("Measurement to delete ID: " + measurement_id);
     this.backendService.deleteMeasurement(measurement_id).subscribe(
         () => {

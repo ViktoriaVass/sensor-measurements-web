@@ -14,7 +14,7 @@ export class BackendService {
   constructor(public storeService: StoreService, private http: HttpClient) {}
 
   public getSensors(): Observable<ISensor[]> {
-    return this.http.get<ISensor[]>("http://localhost:8083/sensor").pipe(
+    return this.http.get<ISensor[]>("http://localhost:8090/sensor").pipe(
       map((jsonResponse: ISensor[]) => {
         console.log('Received JSON Response:', jsonResponse);
         return jsonResponse;
@@ -22,7 +22,12 @@ export class BackendService {
     );
   }
 
-  public deleteSensor(sensor_id: bigint): Observable<any> {
+  getSensorById(sensor_id: number): Observable<ISensor> {
+    const url = `http://localhost:8090/sensor/${sensor_id}`;
+    return this.http.get<ISensor>(url);
+  }
+
+  public deleteSensor(sensor_id: number): Observable<any> {
     console.log("delete Sensor opened with ID: " + sensor_id);
     return this.http.delete("http://localhost:8090/sensor" + `/${sensor_id}`);
   }
@@ -34,7 +39,7 @@ export class BackendService {
   
 
   public getMeasurements(): Observable<IMeasurement[]> {
-    return this.http.get<IMeasurement[]>("http://localhost:8083/measurement").pipe(
+    return this.http.get<IMeasurement[]>("http://localhost:8090/measurement").pipe(
         map((jsonResponse: IMeasurement[]) => {
           console.log('Received JSON Response:', jsonResponse);
           return jsonResponse;
@@ -42,13 +47,16 @@ export class BackendService {
     );
   }
 
-    public deleteMeasurement(measurement_id: bigint): Observable<any> {
+    public deleteMeasurement(measurement_id: number): Observable<any> {
         console.log("delete Sensor opened with ID: " + measurement_id);
         return this.http.delete("http://localhost:8090/measurement" + `/${measurement_id}`);
     }
 
-    public addMeasurement(measurement: IMeasurement): Observable<any> {
-        console.log("adding Measurement: ", measurement);
-        return this.http.post("http://localhost:8090/measurement", measurement);
+    public addMeasurement(sensorId: number, measurement: IMeasurement): Observable<any> {
+      console.log("adding Measurement in BE: ", measurement);
+    
+      const url = `http://localhost:8090/measurement/${sensorId}`;
+      return this.http.post(url, measurement);
     }
+    
 }

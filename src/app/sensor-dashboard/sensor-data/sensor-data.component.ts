@@ -36,7 +36,7 @@ export class SensorDataComponent implements OnInit {
     { field: 'delete', header: '' },
   ];
 
-  public deleteSensor(sensor_id: bigint) {
+  public deleteSensor(sensor_id: number) {
     console.log("Sensor to delete ID: " + sensor_id);
     this.backendService.deleteSensor(sensor_id).subscribe({
       next: () => {
