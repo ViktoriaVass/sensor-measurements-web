@@ -1,5 +1,5 @@
 export interface ISensor {
-    sensor_id: number;
+    sensor_id: bigint;
     name: string;
     location: string,
     isActive: boolean;
