@@ -13,7 +13,14 @@ export class SensorDataComponent implements OnInit {
   constructor (public backendService: BackendService, public storeService: StoreService) {  }
   
   ngOnInit(): void {
-    this.backendService.getSensors();
+    this.backendService.getSensors().subscribe(
+      sensors => {
+        this.storeService.sensors = sensors; // Assign the sensors to the property
+      },
+      error => {
+        console.error('Error fetching sensors:', error);
+      }
+    );
   }
 
   get columnFields() {
@@ -29,8 +36,16 @@ export class SensorDataComponent implements OnInit {
     { field: 'delete', header: '' },
   ];
 
-  public deleteSensor(sensor_id: bigint) {
+  public deleteSensor(sensor_id: number) {
     console.log("Sensor to delete ID: " + sensor_id);
-    this.backendService.deleteSensor(sensor_id);
+    this.backendService.deleteSensor(sensor_id).subscribe({
+      next: () => {
+        this.storeService.sensors = this.storeService.sensors.filter(sensor => sensor.sensor_id !== sensor_id);
+        console.log('Sensor deleted successfully');
+      },
+      error: error => {
+        console.error('Error deleting sensor:', error);
+      }
+    });
   }  
 }

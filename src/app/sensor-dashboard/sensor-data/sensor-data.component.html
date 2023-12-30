@@ -1,11 +1,10 @@
-<div>
-<mat-table [dataSource]="storeService.sensors" matSort>
+<mat-table [dataSource]="this.storeService.sensors" matSort>
 
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
         <mat-cell *matCellDef="let sensor">
             <ng-container *ngIf="column.field === 'delete'">
-                <button mat-button (click)="deleteSensor(sensor.sensor_id)">Delete</button>
+                <button mat-button (click)="deleteSensor(sensor.sensor_id)">delete</button>
             </ng-container>
             <ng-container *ngIf="column.field !== 'delete'">
                 {{ sensor[column.field] }}
@@ -16,4 +15,3 @@
     <mat-header-row *matHeaderRowDef="columnFields"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnFields"></mat-row>
 </mat-table>
-</div>
