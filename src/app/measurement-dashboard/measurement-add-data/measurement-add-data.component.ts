@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {StoreService} from "../../shared/store.service";
 import {BackendService} from "../../shared/backend.service";
-import {PartialObserver} from "rxjs";
 
 @Component({
     selector: 'app-measurement-add-data',
