@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {StoreService} from './store.service';
 import {ISensor} from './interfaces/Sensor';
 import {IMeasurement} from "./interfaces/Measurement";
+import {AbstractControl, ValidationErrors} from "@angular/forms";
 
 @Injectable({
     providedIn: 'root',
@@ -48,9 +49,10 @@ export class BackendService {
         });
     }
 
-    public addMeasurement(measurement: IMeasurement) {
-        console.log("adding Measurement: ", measurement);
-        this.http.post("http://localhost:8090/measurement", measurement).subscribe(_ => {
+    public addMeasurement(toAdd: any) {
+        console.log("adding Measurement: ", toAdd);
+        console.log(toAdd.sensor);
+        this.http.post("http://localhost:8090/measurement" + `/${toAdd.sensor}`, toAdd).subscribe(_ => {
             this.getMeasurements();
             }
         );

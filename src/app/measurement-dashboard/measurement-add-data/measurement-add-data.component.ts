@@ -22,7 +22,7 @@ export class MeasurementAddDataComponent implements OnInit {
     ngOnInit(): void {
         this.addMeasurementForm = this.formbuilder.group({
             measurement_id: [0],  // ID will be automatically assigned in the backend
-            timestamp: [],
+            timestamp: [''],
             humidity: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
             temperature: ['', [Validators.required, Validators.min(-30), Validators.max(50)]],
             sensor: ['', [Validators.required]]
@@ -34,7 +34,10 @@ export class MeasurementAddDataComponent implements OnInit {
     onSubmit() {
         if (this.addMeasurementForm.valid) {
             console.log("Measurement values: ", this.addMeasurementForm.value);
-            this.backendService.addMeasurement({...this.addMeasurementForm.value});
+            this.addMeasurementForm.patchValue({
+                timestamp: this.getCurrentUTC()
+            });
+            this.backendService.addMeasurement(this.addMeasurementForm.value);
             this.addMeasurementForm.reset();
 
         } else {
@@ -53,8 +56,10 @@ export class MeasurementAddDataComponent implements OnInit {
 
     getCurrentUTC(): String {
         const localDateTime: Date = new Date();
-        const utcDateTime: Date = new Date(localDateTime.getTime() - localDateTime.getTimezoneOffset() * 60000);
-        return utcDateTime.toISOString();
+        const utcOffset = localDateTime.getTimezoneOffset();
+        const utcDateTime: Date = new Date(localDateTime.getTime() - utcOffset * 60000);
+        const isoString = utcDateTime.toISOString();
+        return isoString;
     }
 
 }
