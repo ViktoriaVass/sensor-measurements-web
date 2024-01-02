@@ -26,6 +26,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ButtonComponent } from './button/button.component';
+import { SensorUpdateDataComponent } from './sensor-dashboard/sensor-update-data/sensor-update-data.component';
+import { ButtonUpdateComponent } from './button-update/button-update.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ButtonComponent } from './button/button.component';
     MeasurementDiagramComponent,
     MeasurementDataComponent,
     MeasurementAddDataComponent,
-    ButtonComponent
+    ButtonComponent,
+    SensorUpdateDataComponent,
+    ButtonUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,6 @@ import { ButtonComponent } from './button/button.component';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

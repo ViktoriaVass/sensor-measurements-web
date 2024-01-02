@@ -1,0 +1,68 @@
+<form [formGroup]="updateSensorForm" (ngSubmit)="onSubmit()">
+    <h1>Sensor ändern</h1>
+
+    <h2>Ausgewählter Sensor: </h2>
+    <mat-form-field class="input-width">
+        <mat-hint>Sensor</mat-hint>
+        <mat-select formControlName="sensor_id" (selectionChange)="onSensorChange()">
+          <mat-option value="" disabled>Bitte Sensor auswählen</mat-option>
+          <mat-option *ngFor="let sensor of storeService.sensors" [value]="sensor.sensor_id" >
+            {{ sensor.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="updateSensorForm.get('sensor_id').hasError('required')">
+          Bitte Sensor wählen
+        </mat-error>
+      </mat-form-field><br />
+    
+    <h2>Neue Sensor Daten: </h2>
+    <mat-form-field class="input-width">
+        <mat-hint>Sensorname</mat-hint>
+        <input matInput placeholder="Sensorname" formControlName="name">
+        <mat-error *ngIf="updateSensorForm.get('name').hasError('required')">
+            Bitte Sensorname angeben
+        </mat-error>
+        <mat-error *ngIf="updateSensorForm.get('name').hasError('minlength')">
+            Name muss mindestens 3 Zeichen lang sein
+        </mat-error>
+    </mat-form-field><br />
+
+    <mat-form-field class="input-width">
+        <mat-hint>Standort</mat-hint>
+        <input matInput placeholder="Standort" formControlName="location">
+        <mat-error *ngIf="updateSensorForm.get('location').hasError('required')">
+            Bitte Standort angeben
+        </mat-error>
+    </mat-form-field><br />
+
+    <div class="input-width">
+        <mat-checkbox formControlName="isActive">Aktiv</mat-checkbox>
+        <mat-error *ngIf="updateSensorForm.get('isActive').hasError('required')">
+            Aktivitätsstatus auswählen
+        </mat-error>
+    </div><br />
+
+        <mat-form-field class="input-width">
+            <mat-hint>Typ</mat-hint>
+            <mat-select formControlName="type">
+                <mat-option value="" disabled>Bitte auswählen</mat-option>
+                <mat-option value="indoor">Indoor</mat-option>
+                <mat-option value="outdoor">Outdoor</mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateSensorForm.get('type').hasError('required')">
+                Bitte Sensor-Typ wählen
+            </mat-error>
+        </mat-form-field><br />
+
+    <div *ngIf="checkValidSensorInput()">
+        <button mat-flat-button color="primary" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="input-width">
+            Ändern
+        </button>
+    </div>
+    <div *ngIf="!checkValidSensorInput()">
+        <button mat-stroked-button color="link" type="submit" class="input-width">
+            Ändern
+        </button>
+    </div>
+</form>
+

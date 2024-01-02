@@ -1,5 +1,12 @@
 <app-sensor-data></app-sensor-data>
 <br>
-<app-button [showAddData]="showAddData" (toggleButtonClickedEvent)="toggleButtonClicked($event)"></app-button>
-<br>
-<app-sensor-add-data *ngIf="showAddData" ></app-sensor-add-data>
+<div class="buttons">
+    <div class="button-add">
+        <app-button [showAddData]="showAddData" (toggleButtonClickedEvent)="toggleButtonClicked($event)"></app-button>
+        <app-sensor-add-data *ngIf="showAddData"></app-sensor-add-data>
+    </div>
+    <div class="button-update">
+        <app-update-button [showUpdateData]="showUpdateData" (toggleUpdateButtonClickedEvent)="toggleUpdateButtonClicked($event)"></app-update-button>
+        <app-sensor-update-data *ngIf="showUpdateData"></app-sensor-update-data>
+    </div>
+</div>

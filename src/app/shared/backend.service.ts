@@ -35,6 +35,12 @@ export class BackendService {
         });
     }
 
+    public updateSensor(sensor: ISensor) {
+        console.log("updating Sensor: ", sensor);
+        this.http.put("http://localhost:8090/sensor" + `/${sensor.sensor_id}`, sensor).subscribe(_ => {
+            this.getSensors();
+        });
+    }
 
     public getMeasurements() {
         this.http.get<IMeasurement[]>("http://localhost:8083/measurement").subscribe(data => {
