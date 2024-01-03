@@ -1,0 +1,10 @@
+.buttons {
+    display: flex; /* Use flexbox to create a horizontal layout */
+    justify-content: space-between; /* Add space between buttons */
+}
+
+.button-add,
+.button-update {
+    flex: 1; /* Make both buttons take equal width */
+    margin-right: 40px; /* Add margin between buttons if needed */
+}
