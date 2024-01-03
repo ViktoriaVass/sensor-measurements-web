@@ -22,10 +22,10 @@ export class SensorUpdateDataComponent implements OnInit {
   ngOnInit(): void {
     this.updateSensorForm = this.formbuilder.group({
       sensor_id: [0],
-      name: ['Name', [Validators.required, Validators.minLength(3)]],
-      location: ['Location', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      location: ['', [Validators.required]],
       isActive: [false, [Validators.required]],
-      type: ['Bitte auswählen', [Validators.required]],
+      type: ['', [Validators.required]],
     });
 
     this.backendService.getSensors();

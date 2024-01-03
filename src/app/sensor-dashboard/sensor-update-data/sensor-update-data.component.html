@@ -1,11 +1,12 @@
 <form [formGroup]="updateSensorForm" (ngSubmit)="onSubmit()">
     <h1>Sensor ändern</h1>
 
-    <h2>Ausgewählter Sensor: </h2>
+    <h2>Sensor auswählen: </h2>
     <mat-form-field class="input-width">
+        <mat-label>Sensor</mat-label>
         <mat-hint>Sensor</mat-hint>
         <mat-select formControlName="sensor_id" (selectionChange)="onSensorChange()">
-          <mat-option value="" disabled>Bitte Sensor auswählen</mat-option>
+          <mat-option value="" disabled>Bitte auswählen</mat-option>
           <mat-option *ngFor="let sensor of storeService.sensors" [value]="sensor.sensor_id" >
             {{ sensor.name }}
           </mat-option>
