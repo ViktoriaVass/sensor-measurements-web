@@ -31,9 +31,21 @@ export class MeasurementDataComponent {
         {field: 'delete', header: ''},
     ];
 
-
     deleteMeasurement(measurement_id: bigint) {
         console.log("Measurement to delete ID: " + measurement_id);
         this.backendService.deleteMeasurement(measurement_id);
+    }
+
+    getFormattedDate(dateTimeString: number): any {
+        const date = new Date(dateTimeString).toLocaleDateString('at-DE', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'UTC'
+        })
+        return date;
     }
 }

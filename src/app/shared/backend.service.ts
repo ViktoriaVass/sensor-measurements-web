@@ -17,7 +17,9 @@ export class BackendService {
 
     public getSensors() {
         this.http.get<ISensor[]>("http://localhost:8083/sensor").subscribe(data => {
-            this.storeService.sensors = data;
+            this.storeService.sensors = data.sort((a, b) => {
+                return +a.sensor_id - +b.sensor_id;
+            });
         });
     }
 
@@ -44,8 +46,10 @@ export class BackendService {
 
     public getMeasurements() {
         this.http.get<IMeasurement[]>("http://localhost:8083/measurement").subscribe(data => {
-            this.storeService.measurements = data;
-        })
+            this.storeService.measurements = data.sort((a, b) => {
+                return +a.measurement_id - +b.measurement_id;
+            });
+        });
     }
 
     public deleteMeasurement(measurement_id: bigint) {
@@ -62,5 +66,12 @@ export class BackendService {
             this.getMeasurements();
             }
         );
+    }
+
+    public updateMeasurement(measurement: IMeasurement) {
+        console.log("updating Measurement: ", measurement);
+        this.http.put("http://localhost:8090/measurement" + `/${measurement.measurement_id}`, measurement).subscribe(_ => {
+            this.getMeasurements();
+        });
     }
 }

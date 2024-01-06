@@ -1,0 +1,75 @@
+<form [formGroup]="updateMeasurementForm" (ngSubmit)="onSubmit()">
+    <h1>Messung ändern</h1>
+
+    <h2>Messung zum ändern auswählen: </h2>
+    <mat-form-field class="input-width">
+        <mat-label>Messung</mat-label>
+        <mat-hint>Messung</mat-hint>
+        <mat-select formControlName="measurement_id" (selectionChange)="onMeasurementChange()">
+            <mat-option value="" disabled>Bitte Messung auswählen</mat-option>
+            <mat-option *ngFor="let measurement of storeService.measurements" [value]="measurement.measurement_id" >
+                {{ measurement.measurement_id }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="updateMeasurementForm.get('measurement_id').hasError('required')">
+            Bitte Messung wählen
+        </mat-error>
+    </mat-form-field><br />
+
+    <h2>Neue Measurement Daten: </h2>
+    <mat-form-field class="input-width">
+        <mat-hint>Sensor</mat-hint>
+        <mat-select formControlName="sensor" >
+            <mat-option value="" disabled>Bitte auswählen</mat-option>
+            <mat-option *ngFor="let sensor of storeService.sensors" [value]="sensor.sensor_id">
+                {{ sensor.name }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="updateMeasurementForm.get('sensor').hasError('required')">
+            Bitte Sensor wählen
+        </mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field class="input-width">
+        <mat-hint>Feuchtigkeit</mat-hint>
+        <input matInput placeholder="Feuchtigkeit" formControlName="humidity">
+        <mat-error *ngIf="updateMeasurementForm.get('humidity').hasError('required')">
+            Bitte den Wert der Luftfeuchtigkeit eingeben!
+        </mat-error>
+        <mat-error *ngIf="updateMeasurementForm.get('humidity').hasError('min')">
+            Der Wert darf nicht unter 0 sein!
+        </mat-error>
+        <mat-error *ngIf="updateMeasurementForm.get('humidity').hasError('max')">
+            Der Wert darf nicht über 100 sein!
+        </mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field class="input-width">
+        <mat-hint>Temperatur</mat-hint>
+        <input matInput placeholder="Temperatur" formControlName="temperature">
+        <mat-error *ngIf="updateMeasurementForm.get('temperature').hasError('required')">
+            Bitte den Wert der Temperatur eingeben!
+        </mat-error>
+        <mat-error *ngIf="updateMeasurementForm.get('temperature').hasError('min')">
+            Der Wert darf nicht unter -30 sein!
+        </mat-error>
+        <mat-error *ngIf="updateMeasurementForm.get('temperature').hasError('max')">
+            Der Wert darf nicht über 50 sein!
+        </mat-error>
+    </mat-form-field>
+    <br/>
+
+    <div *ngIf="checkValidMeasurementInput()">
+        <button mat-flat-button color="primary" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="input-width">
+            Ändern
+        </button>
+    </div>
+    <div *ngIf="!checkValidMeasurementInput()">
+        <button mat-stroked-button color="link" type="submit" class="input-width">
+            Ändern
+        </button>
+    </div>
+</form>
+

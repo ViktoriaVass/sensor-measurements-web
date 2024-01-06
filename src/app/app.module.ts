@@ -28,6 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ButtonComponent } from './button/button.component';
 import { SensorUpdateDataComponent } from './sensor-dashboard/sensor-update-data/sensor-update-data.component';
 import { ButtonUpdateComponent } from './button-update/button-update.component';
+import { MeasurementUpdateDataComponent } from './measurement-dashboard/measurement-update-data/measurement-update-data.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ButtonUpdateComponent } from './button-update/button-update.component';
     MeasurementAddDataComponent,
     ButtonComponent,
     SensorUpdateDataComponent,
-    ButtonUpdateComponent
+    ButtonUpdateComponent,
+    MeasurementUpdateDataComponent
   ],
   imports: [
     BrowserModule,

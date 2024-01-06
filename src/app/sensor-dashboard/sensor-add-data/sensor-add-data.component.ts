@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {BackendService} from 'src/app/shared/backend.service';
-import {ISensor} from 'src/app/shared/interfaces/Sensor';
 import {StoreService} from 'src/app/shared/store.service';
-import {PartialObserver} from 'rxjs';
 
 @Component({
     selector: 'app-sensor-add-data',

@@ -57,7 +57,7 @@ export class SensorUpdateDataComponent implements OnInit {
     } else {
         console.log('Form validation failed. Please check the form for errors.');
     }
-}
+  }
 
   checkValidSensorInput() {
     if (this.updateSensorForm.valid) {

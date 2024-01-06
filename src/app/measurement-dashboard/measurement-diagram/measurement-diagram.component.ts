@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
-import {ChartConfiguration, ChartOptions, ChartType} from 'chart.js/auto';
+import {ChartConfiguration, ChartOptions} from 'chart.js/auto';
 import {BackendService} from "../../shared/backend.service";
-import {IMeasurement} from "../../shared/interfaces/Measurement";
-import * as moment from 'moment';
 import {StoreService} from "../../shared/store.service";
 
 @Component({
@@ -23,7 +21,7 @@ export class MeasurementDiagramComponent {
         this.backendService.getMeasurements()
         setTimeout(() => {
             this.processMeasurementsForChart();
-            this.updateChartData(); // Aktualisiere die Diagrammdaten
+            this.updateChartData();
         }, 5000);
     }
 
@@ -44,14 +42,14 @@ export class MeasurementDiagramComponent {
     }
 
     public lineChartData: ChartConfiguration<'line'>['data'] = {
-        labels: [], // Labels zunächst leer lassen
+        labels: [],
         datasets: [
             {
-                data: [], // Daten zunächst leer lassen
+                data: [],
                 label: 'Humidity',
             },
             {
-                data: [], // Daten zunächst leer lassen
+                data: [],
                 label: 'Temperature',
             }
         ]

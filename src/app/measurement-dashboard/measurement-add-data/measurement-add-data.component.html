@@ -20,7 +20,7 @@
         <mat-hint>Wert der Luftfeuchtigkeit</mat-hint>
         <input matInput placeholder="Feuchtigkeit" formControlName="humidity">
         <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('required')">
-            Bitte den Wert der Feuchtigkeit eingeben!
+            Bitte den Wert der Luftfeuchtigkeit eingeben!
         </mat-error>
         <mat-error *ngIf="addMeasurementForm.get('humidity').hasError('min')">
             Der Wert darf nicht unter 0 sein!

@@ -12,6 +12,4 @@ export class StoreService {
 
     public sensors: ISensor[] = [];
     public measurements: IMeasurement[] = [];
-    // public childrenTotalCount: number = 0;
-    //public isLoading: boolean = true;
 }
