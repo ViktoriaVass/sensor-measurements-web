@@ -16,7 +16,7 @@ export class BackendService {
     }
 
     public getSensors() {
-        this.http.get<ISensor[]>("http://localhost:8083/sensor").subscribe(data => {
+        this.http.get<ISensor[]>("http://localhost:8090/sensor").subscribe(data => {
             this.storeService.sensors = data.sort((a, b) => {
                 return +a.sensor_id - +b.sensor_id;
             });
@@ -45,7 +45,7 @@ export class BackendService {
     }
 
     public getMeasurements() {
-        this.http.get<IMeasurement[]>("http://localhost:8083/measurement").subscribe(data => {
+        this.http.get<IMeasurement[]>("http://localhost:8090/measurement").subscribe(data => {
             this.storeService.measurements = data.sort((a, b) => {
                 return +a.measurement_id - +b.measurement_id;
             });
